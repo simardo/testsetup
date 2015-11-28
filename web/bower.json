@@ -1,0 +1,8 @@
+{
+  "name": "test-setup",
+  "private": true,
+  "dependencies": {
+    "angular": "1.4.x",
+    "requirejs": "*"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "test-setup",
+  "version": "0.1.0",
+  "description": "test de setup d'environnement",
+  "repository": {},
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "~1.6.2",
+    "grunt": "~0.4.5",
+    "grunt-ts": "^5.1.0",
+    "bower": "~1.6.5"
+  },
+  "scripts": {
+    "postinstall": "bower install && tsd install",
+    
+    "start": "grunt ts:build"
+  }
+}
