@@ -1,0 +1,8 @@
+node_modules
+typings
+web/node_modules
+web/typings
+web/app/scripts
+.tscache
+*.js
+*.js.map
