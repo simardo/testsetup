@@ -4,7 +4,9 @@
 require.config({
     // alias libraries paths
     paths: {
-        'angular': 'scripts/angular/angular'
+        "angular": "scripts/angular/angular",
+        "jquery": "scripts/jquery/dist/jquery",
+        "bootstrap": "scripts/bootstrap/dist/js/bootstrap"
     },
     // angular does not support AMD out of the box, put it in a shim
     shim: {
@@ -15,9 +17,8 @@ require.config({
     baseUrl: "/app"
 });
 
-require(["angular"], () => {
-    require(['testmodule'], () => {
-        var angular: ng.IAngularStatic = require("angular");
+require(["angular", "jquery", "bootstrap"], () => {
+    require(["testmodule"], () => {
         angular.bootstrap(document, ["testModule"]);
     });
 });
