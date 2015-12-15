@@ -5,8 +5,8 @@
   "repository": {},
   "license": "MIT",
   "devDependencies": {
-    "typescript": "~1.6.2",
-    "grunt": "~0.4.5",
+    "typescript": "^1.7.3",
+    "grunt": "^0.4.5",
     "grunt-ts": "^5.1.0"
   },
   "scripts": {
@@ -15,7 +15,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "~4.13.3",
-    "mongodb": "~2.0.49"
+    "express": "^4.13.3",
+    "mongodb": "^2.0.49"
   }
 }

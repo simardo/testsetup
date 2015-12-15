@@ -1,0 +1,10 @@
+<ul>
+    <li ng-repeat="number in ctrl.numbers track by $index">{{number.getValue()}}</li>
+</ul>
+<div ng-transclude=""></div>
+
+<form ng-submit="ctrl.submit()">
+  Réponse:
+  <input type="text" ng-model="ctrl.reponse" name="reponse" />
+  <input type="submit" />
+</form>
