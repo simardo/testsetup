@@ -9,6 +9,7 @@ export class ControllerOperation {
     public type: string;
     public numbers: IOperationNumber[] = [];
     public reponse: string;
+    public resultat: boolean = true;
 
     public constructor() {
     }
@@ -26,9 +27,12 @@ export class ControllerOperation {
             }
         }
         if (parseInt(this.reponse) == res) {
-            this.reponse = "";
             this.numbers.forEach(value => value.reset());
+            this.resultat = true;
+        } else {
+            this.resultat = false;
         }
+        this.reponse = "";
     }
 }
 

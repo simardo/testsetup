@@ -1,10 +1,19 @@
-<ul>
-    <li ng-repeat="number in ctrl.numbers track by $index">{{number.getValue()}}</li>
-</ul>
-<div ng-transclude=""></div>
+<div class="text-center">
+    <ul class="list-unstyled">
+        <li ng-repeat="number in ctrl.numbers track by $index">
+            <span class="h1" ng-if="$index == 0">&nbsp;&nbsp;</span>
+            <span class="h1" ng-if="$index > 0">+</span> 
+            <span class="h1">{{number.getValue()}}</span>
+        </li>
+    </ul>
+    <div ng-transclude></div>
 
-<form ng-submit="ctrl.submit()">
-  Réponse:
-  <input type="text" ng-model="ctrl.reponse" name="reponse" />
-  <input type="submit" />
-</form>
+    <form class="form-inline" ng-submit="ctrl.submit()">
+        <div class="form-group has-feedback" ng-class="(ctrl.resultat) ? 'has-success' : 'has-error'">
+            <label class="control-label" for="reponse">Réponse</label>
+            <input class="form-control" type="tel" ng-model="ctrl.reponse" name="reponse" id="reponse" />
+            <span class="glyphicon form-control-feedback" ng-class="(ctrl.resultat) ? 'glyphicon-ok' : 'glyphicon-remove'"></span>
+        </div>
+        <input class="btn btn-default" type="submit" value="vérifier" />
+    </form>
+</div>
