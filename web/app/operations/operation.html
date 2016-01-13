@@ -1,19 +1,22 @@
-<div class="text-center">
+<div style="width:52%" class="text-right">
     <ul class="list-unstyled">
         <li ng-repeat="number in ctrl.numbers track by $index">
-            <span class="h1" ng-if="$index == 0">&nbsp;&nbsp;</span>
-            <span class="h1" ng-if="$index > 0">+</span> 
+            <span class="h1" ng-if="$index == 0"></span>
+            <span class="h1" ng-if="$index > 0">{{ctrl.getOperateur()}}</span>
             <span class="h1">{{number.getValue()}}</span>
         </li>
     </ul>
-    <div ng-transclude></div>
-
-    <form class="form-inline" ng-submit="ctrl.submit()">
-        <div class="form-group has-feedback" ng-class="(ctrl.resultat) ? 'has-success' : 'has-error'">
-            <label class="control-label" for="reponse">Réponse</label>
-            <input class="form-control" type="tel" ng-model="ctrl.reponse" name="reponse" id="reponse" />
-            <span class="glyphicon form-control-feedback" ng-class="(ctrl.resultat) ? 'glyphicon-ok' : 'glyphicon-remove'"></span>
+    <div style="display:none" ng-transclude></div>
+</div>
+<div class="text-center">
+    <form class="form-inline" ng-submit="ctrl.submit()" autocomplete="off">
+        <div class="form-group has-feedback" ng-class="(ctrl.resultat == 1) ? 'has-success' : (ctrl.resultat == -1) ? 'has-error' : ''">
+            <input style="width:125px" class="form-control" type="tel" ng-model="ctrl.reponse" name="reponse" id="reponse" />
+            <span ng-if="ctrl.resultat != 0" class="glyphicon form-control-feedback" ng-class="(ctrl.resultat) ? 'glyphicon-ok' : 'glyphicon-remove'"></span>
         </div>
-        <input class="btn btn-default" type="submit" value="vérifier" />
     </form>
+</div>
+
+<div class="text-center">
+    <sdo-num-pad></sdo-num-pad>
 </div>
