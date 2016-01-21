@@ -1,9 +1,9 @@
 {
-  "name": "test-setup",
-  "private": true,
-  "dependencies": {
-    "angular": "1.4.x",
-    "requirejs": "*",
-    "bootstrap": "*"
-  }
+    "name": "test-setup",
+    "private": true,
+    "dependencies": {
+        "angular": "1.5.x",
+        "requirejs": "*",
+        "bootstrap": "*"
+    }
 }

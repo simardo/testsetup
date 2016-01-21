@@ -4,30 +4,45 @@ import {ControllerOperation, IOperationNumber} from "operations/operation";
 export class ControllerNombreAleatoire implements IOperationNumber {
     public minstr: string;
     public maxstr: string;
-    
+
     private min: number;
     private max: number;
-    
+    private ruban: Array<number>;
+
     public nombre: number;
-    
+
     public constructor() {
-        this.reset();
-    }
-    
-    public getValue(): number {
-        return this.nombre;
-    }
-    
-    public reset(): void {
         if (this.minstr == null) {
             this.minstr = "0";
         }
-        
+
         this.min = parseInt(this.minstr);
         this.max = parseInt(this.maxstr);
-        
-        var r: number = Math.random() * (this.max - this.min);
-        this.nombre = this.min + Math.round(r);
+
+        this.ruban = new Array<number>();
+
+        this.reset();
+    }
+
+    public getValue(): number {
+        return this.nombre;
+    }
+
+    public reset(): void {
+        if (this.ruban.length == 0) {
+            this.resetRuban();
+        }
+        var r: number = Math.random() * (this.ruban.length - 1);
+        var index: number = Math.round(r);
+        this.nombre = this.min + this.ruban[index];
+        this.ruban = this.ruban.filter((value, i) => i != index);
+        console.log(this.ruban, index);
+    }
+
+    private resetRuban(): void {
+        for (var i = this.min; i <= this.max; i++) {
+            this.ruban.push(i);
+        }
     }
 }
 

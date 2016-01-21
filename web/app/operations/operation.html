@@ -1,11 +1,11 @@
-<div style="width:52%" class="text-right">
-    <ul class="list-unstyled">
-        <li ng-repeat="number in ctrl.numbers track by $index">
-            <span class="h1" ng-if="$index == 0"></span>
-            <span class="h1" ng-if="$index > 0">{{ctrl.getOperateur()}}</span>
-            <span class="h1">{{number.getValue()}}</span>
-        </li>
-    </ul>
+<div style="position:relative;width:52%;height:90px" class="text-right">
+    <table style="right:0px;position:absolute">
+        <tr ng-repeat="number in ctrl.numbers track by $index">
+            <td class="h1" ng-if="$index == 0"></td>
+            <td ng-style="{'border-bottom': ($index == ctrl.numbers.length - 1) ? 'solid 3px' : ''}" class="h1" ng-if="$index > 0">{{ctrl.getOperateur()}}</td>
+            <td ng-style="{'border-bottom': ($index == ctrl.numbers.length - 1) ? 'solid 3px' : ''}" class="h1">{{number.getValue()}}</td>
+        </tr>
+    </table>
     <div style="display:none" ng-transclude></div>
 </div>
 <div class="text-center">
