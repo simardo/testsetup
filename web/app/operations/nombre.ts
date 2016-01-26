@@ -11,7 +11,7 @@ export class ControllerNombre implements IOperationNumber {
         return parseInt(this.valeurstr);
     }
     
-    public reset(): void {
+    public reset(errorCount: number): void {
         return;
     }
 }
@@ -21,7 +21,7 @@ export const CONTROLLER_CONSTRUCTOR: any[] = [ControllerNombre];
 
 class DirectiveNombre implements ng.IDirective {
     restrict: string = "E";
-    require: any = "^sdoOperation";
+    require: any = "^^sdoOperation";
     controller: any = CONTROLLER_NAME;
     controllerAs: string = "ctrl";
     scope: any = {};

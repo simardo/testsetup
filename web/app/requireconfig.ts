@@ -5,6 +5,7 @@ require.config({
     // alias libraries paths
     paths: {
         "angular": "scripts/angular/angular",
+        "angulartouch": "scripts/angular-touch/angular-touch",
         "jquery": "scripts/jquery/dist/jquery",
         "bootstrap": "scripts/bootstrap/dist/js/bootstrap"
     },
@@ -12,12 +13,15 @@ require.config({
     shim: {
         'angular': {
             exports: 'angular'
+        },
+        'angulartouch': {
+            deps: ['angular']
         }
     },
     baseUrl: "/app"
 });
 
-require(["angular", "jquery", "bootstrap"], () => {
+require(["angular", "angulartouch", "jquery", "bootstrap"], () => {
     require(["testmodule"], () => {
         angular.bootstrap(document, ["testModule"]);
     });

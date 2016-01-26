@@ -8,6 +8,7 @@ export class ControllerNombreAleatoire implements IOperationNumber {
     private min: number;
     private max: number;
     private ruban: Array<number>;
+    private lastIndex: number = -1;
 
     public nombre: number;
 
@@ -21,22 +22,26 @@ export class ControllerNombreAleatoire implements IOperationNumber {
 
         this.ruban = new Array<number>();
 
-        this.reset();
+        this.reset(0);
     }
 
     public getValue(): number {
         return this.nombre;
     }
 
-    public reset(): void {
+    public reset(errorCount: number): void {
+        if (errorCount == 0 && this.lastIndex > -1) {
+            this.ruban = this.ruban.filter((value, i) => i != this.lastIndex);
+        }
+
         if (this.ruban.length == 0) {
             this.resetRuban();
         }
         var r: number = Math.random() * (this.ruban.length - 1);
-        var index: number = Math.round(r);
-        this.nombre = this.min + this.ruban[index];
-        this.ruban = this.ruban.filter((value, i) => i != index);
-        console.log(this.ruban, index);
+        this.lastIndex = Math.round(r);
+        this.nombre = this.min + this.ruban[this.lastIndex];
+
+        console.log(this.ruban, this.lastIndex);
     }
 
     private resetRuban(): void {
@@ -51,7 +56,7 @@ export const CONTROLLER_CONSTRUCTOR: any[] = [ControllerNombreAleatoire];
 
 class DirectiveNombreAleatoire implements ng.IDirective {
     restrict: string = "E";
-    require: any = "^sdoOperation";
+    require: any = "^^sdoOperation";
     controller: any = CONTROLLER_CONSTRUCTOR;
     scope: any = {};
     controllerAs: string = "ctrl";

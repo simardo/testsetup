@@ -13,7 +13,7 @@ import * as NumPad from "pad/numpad";
 
 const MODULE_NAME: string = "testModule";
 
-var app: angular.IModule = angular.module(MODULE_NAME, []);
+var app: angular.IModule = angular.module(MODULE_NAME, ["ngTouch"]);
 
 app.directive(Menu.DIRECTIVE_NAME, Menu.DIRECTIVE_FUNCTION);
 app.directive(NombreAleatoire.DIRECTIVE_NAME, NombreAleatoire.DIRECTIVE_FUNCTION);

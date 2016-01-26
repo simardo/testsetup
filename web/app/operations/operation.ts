@@ -2,7 +2,7 @@
 
 export interface IOperationNumber {
     getValue(): number;
-    reset(): void;
+    reset(errorCount: number): void;
 }
 
 export class ControllerOperation {
@@ -10,9 +10,12 @@ export class ControllerOperation {
     public numbers: IOperationNumber[] = [];
     public reponse: string = "";
     public resultat: number = 0;
+    public solution: number = null;
+
+    private errorCount: number = 0;
 
     public constructor(private $scope: ng.IScope, private $timeout: ng.ITimeoutService) {
-        this.$scope.$on("NUMPAD", (event: ng.IAngularEvent, valeur: number) => this.keyPress(valeur));
+        //this.$scope.$on("NUMPAD", (event: ng.IAngularEvent, valeur: number) => this.keyPress(valeur));
         this.$scope.$on("NUMPAD_CLEAR", (event: ng.IAngularEvent) => this.reponse = "");
         this.$scope.$on("NUMPAD_VALIDATE", (event: ng.IAngularEvent) => this.submit());
     }
@@ -47,17 +50,28 @@ export class ControllerOperation {
         }
         if (parseInt(this.reponse) == res) {
             this.resultat = 1;
-            this.$timeout(() => {
-                this.reponse = "";
-                this.resultat = 0;
-                this.numbers.forEach(value => value.reset());
-            }, 750);
+            this.reset(750);
         } else {
             this.resultat = -1;
+            this.errorCount += 1;
+            if (this.errorCount == 2) {
+                this.solution = res;
+                this.reset(3000);
+            }
         }
     }
 
-    private keyPress(valeur: number): void {
+    private reset(delai: number): void {
+        this.$timeout(() => {
+            this.solution = null;
+            this.reponse = "";
+            this.resultat = 0;
+            this.numbers.forEach(value => value.reset(this.errorCount));
+            this.errorCount = 0;
+        }, delai);
+    }
+
+    public keyPress(valeur: number): void {
         if (this.resultat == -1) {
             this.resultat = 0;
             this.reponse = "";

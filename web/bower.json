@@ -2,7 +2,8 @@
     "name": "test-setup",
     "private": true,
     "dependencies": {
-        "angular": "1.5.x",
+        "angular": "1.4.x",
+        "angular-touch": "*",
         "requirejs": "*",
         "bootstrap": "*"
     }
